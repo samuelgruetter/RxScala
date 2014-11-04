@@ -39,6 +39,8 @@ import org.scalatest.junit.JUnitSuite
 import rx.lang.scala._
 import rx.lang.scala.schedulers._
 
+import Observable._
+
 /**
  * Demo how the different operators can be used. In Eclipse, you can right-click
  * a test and choose "Run As" > "Scala JUnit Test".
@@ -1248,7 +1250,7 @@ class RxScalaDemo extends JUnitSuite {
     val o = (1 to 10).toObservable
       .zip(Observable.interval(100 millis))
       .map(_._1)
-      .takeRight(2, 300 millis)
+      .takeRight(SizeBound(2, 300 millis))
     println(o.toBlocking.toList)
   }
 
